@@ -3,46 +3,104 @@ using System.Collections;
 
 public class ScreenShake : MonoBehaviour {
 
-    private Camera _camera; // set this via inspector
-    private float _shake = 2;
-    private float shakeAmount = 0.05f;
-    private float decreaseFactor =  1.0f;
+    [SerializeField] private Camera _camera;                        // the camera
+    [SerializeField] private float _shakeDuration = 2;              //the duration of the shakes;
+    [SerializeField] private float _shakeIntensity = 0.05f;         //the intensity of the shaking
+    [SerializeField] private float _shakeSpeed = 0.05f;             //the speed at which the camera will go to a new position
+    [SerializeField] private bool _isShaking = true;                 //if the camera shake is on.
 
-    private ObjectFollow cam;
- 
-    void Start()
+    private float _shakeLeft;                                       //how long it wil keep shaking.
+
+    /// <summary>
+    /// The start duration of a shake.
+    /// </summary>
+    public float shakeDuration
     {
-        cam = GetComponent<ObjectFollow>();
+        get { return _shakeDuration; }
+        set { _shakeDuration = value; }
     }
 
-   void Update()
+    /// <summary>
+    /// The speed at which the camera will go to a new position.
+    /// </summary>
+    public float shakeSpeed
     {
-        //cam.driffencePosition += new Vector3(0.1f, 0.1f, 0.1f); 
+        get { return _shakeSpeed; }
+        set { _shakeSpeed = value; }
+    }
+    /// <summary>
+    /// The intensity of the shake.
+    /// </summary>
+    public float shakeIntansity
+    {
+        get { return _shakeIntensity; }
+        set { _shakeIntensity = value; }
     }
 
+    /// <summary>
+    /// If the camera is shaking.
+    /// </summary>
+    public bool isShaking
+    {
+        get { return _isShaking; }
+    }
+
+    /// <summary>
+    /// Resets the shake to full duration.
+    /// </summary>
+    public void ResetShake()
+    {
+        _shakeLeft = _shakeDuration;
+    }
+
+    /// <summary>
+    /// Starts the screenshake.
+    /// </summary>
     public void StartShake()
     {
+        _isShaking = true;
         StartCoroutine(Shake());
     }
 
+    /// <summary>
+    /// Stops the screenshake.
+    /// </summary>
+    public void StopShake()
+    {
+        _isShaking = false;
+    }
+
+    void Start()
+    {
+        if (_isShaking)
+            StartShake();
+    }
+
+    /// <summary>
+    /// Shakes the object.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Shake()
     {
-        Vector3 pos = cam.driffencePosition;
+        Vector3 startPosition = _camera.transform.localPosition;//the startposition
         
         while (true)
         {
-            
-            if (_shake > 0)
+            if (_shakeLeft > 0)
             {
-                cam.driffencePosition = Random.insideUnitSphere * shakeAmount + pos;
-                _shake -= Time.deltaTime * decreaseFactor;
-                yield return new WaitForSeconds(0.05f);
+                _camera.transform.localPosition = Random.insideUnitSphere * _shakeIntensity + startPosition;//makes the position a random position around the startposition
+                _shakeLeft -= Time.deltaTime;//the duration minus the deltatime
+                yield return new WaitForSeconds(_shakeSpeed);
             }
             else {
-                _shake = 0.0f;
-                cam.driffencePosition = pos;
+                _shakeLeft = 0.0f;//the shake is 0.
+                _camera.transform.localPosition = startPosition;//sets the camera back to the start position.
                 yield return null;
-                continue;
+            }
+            if (!_isShaking)
+            {
+                _camera.transform.localPosition = startPosition;
+                break;
             }
         }
     }
