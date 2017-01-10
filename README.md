@@ -46,18 +46,17 @@ See the Slice footage in the links below.
 
 <a href="http://pakhuis.hosts.ma-cloud.nl/briefing.php?briefing=GD2_-PROJECT_vertical-slice---" target=_blank><img src="https://github.com/IanMunster/VerticalSlice2D/blob/master/Src/Briefing.JPG" alt="Briefing" width="560" height="315" border="1" /></a>
 
-[- Gameplay Video -](https://www.youtube.com/watch?v=LDsxUKful28 "GamePlay")
-
-<a href="https://www.youtube.com/watch?v=LDsxUKful28
-" target="_blank"><img src="http://img.youtube.com/vi/LDsxUKful28/0.jpg" 
-alt="Vertical Slice" width="560" height="315" border="1" /></a>
-
 [- Slice Video	  -](https://www.youtube.com/watch?v=RaLNniIl5K0 "Slice")
 
 <a href="https://www.youtube.com/watch?v=RaLNniIl5K0
 " target="_blank"><img src="http://img.youtube.com/vi/RaLNniIl5K0/0.jpg" 
 alt="Vertical Slice" width="560" height="315" border="1" /></a>
 
+[- Gameplay Video -](https:// "GamePlay")
+
+<a href="https://www.youtube.com/
+" target="_blank"><img src="http://img.youtube.com/" 
+alt="Vertical Slice" width="560" height="315" border="1" /></a>
 
 [- Trello	        -]	(https://trello.com/b/GcJ0TmPi/vertical-slice "Trello Board")
 
