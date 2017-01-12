@@ -4,19 +4,21 @@ using UnityEngine.Events;
 
 public class ScriptTester : MonoBehaviour {
 
-    public UnityEvent testEvent;
-    public UnityEvent testEvent2;
+    public KeyCode key = KeyCode.T;
+
+    public UnityEvent KeyDown;
+    public UnityEvent GetKey;
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(key))
         {
-            testEvent.Invoke();
+            KeyDown.Invoke();
         }
 
-        if (Input.GetKey(KeyCode.T))
+        if (Input.GetKey(key))
         {
-            testEvent2.Invoke();
+            GetKey.Invoke();
         }
     }
 }

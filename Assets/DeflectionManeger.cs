@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class DeflectionManeger : MonoBehaviour {
 
-    public GameObject target;
     public ObjectTargetMovement _targetMover;
     
-    public void bounce()
+    public void bounce(GameObject target)
     {
         _targetMover.target = target;
     }

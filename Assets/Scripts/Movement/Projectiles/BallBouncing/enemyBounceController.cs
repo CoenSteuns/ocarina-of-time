@@ -26,7 +26,7 @@ public class enemyBounceController : MonoBehaviour {
                 _bouncer.DeflectProjectiles();
 
             }
-            yield return new WaitForSeconds(0.53f);
+            yield return new WaitForSeconds(0.33f);
         }
        
     }

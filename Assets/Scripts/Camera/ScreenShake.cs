@@ -46,20 +46,12 @@ public class ScreenShake : MonoBehaviour {
     }
 
     /// <summary>
-    /// Resets the shake to full duration.
-    /// </summary>
-    public void ResetShake()
-    {
-        _shakeLeft = _shakeDuration;
-    }
-
-    /// <summary>
     /// Starts the screenshake.
     /// </summary>
     public void StartShake()
     {
-        _isShaking = true;
-        StartCoroutine(Shake());
+        if(!_isShaking)
+            StartCoroutine(Shake());
     }
 
     /// <summary>
@@ -82,26 +74,24 @@ public class ScreenShake : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator Shake()
     {
+        _shakeLeft = _shakeDuration;
         Vector3 startPosition = _camera.transform.localPosition;//the startposition
-        
-        while (true)
+        Vector3 positionDiffrence = Vector3.zero;
+        do
         {
+            _isShaking = false;
             if (_shakeLeft > 0)
             {
-                _camera.transform.localPosition = Random.insideUnitSphere * _shakeIntensity + startPosition;//makes the position a random position around the startposition
-                _shakeLeft -= Time.deltaTime;//the duration minus the deltatime
-                yield return new WaitForSeconds(_shakeSpeed);
+                startPosition = _camera.transform.localPosition - positionDiffrence;
+                _camera.transform.localPosition = Random.insideUnitSphere * _shakeIntensity + startPosition;
+                positionDiffrence = _camera.transform.localPosition - startPosition;
+
+                _shakeLeft -= Time.deltaTime;
+                _isShaking = true;
             }
-            else {
-                _shakeLeft = 0.0f;//the shake is 0.
-                _camera.transform.localPosition = startPosition;//sets the camera back to the start position.
-                yield return null;
-            }
-            if (!_isShaking)
-            {
-                _camera.transform.localPosition = startPosition;
-                break;
-            }
-        }
+            yield return new WaitForSeconds(_shakeDuration);
+        } while (isShaking);
+        _camera.transform.localPosition = startPosition;
+
     }
 }
