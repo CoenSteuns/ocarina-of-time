@@ -22,7 +22,7 @@ public class Health : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print (this+" CurrentHealth: "+_currentHealth);
+//		print (this+" CurrentHealth: "+_currentHealth);
 
 		if(_currentHealth > maxHealth){
 			print ("CHEATER!");
