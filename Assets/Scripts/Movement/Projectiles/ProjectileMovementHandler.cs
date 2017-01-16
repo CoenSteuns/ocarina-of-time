@@ -3,13 +3,13 @@ using System.Collections;
 
 public class ProjectileMovementHandler : MonoBehaviour {
 
-    private ObjectTargetMovement _targetMover;
+    private ConstantVelocity _targetMover;
 
 	void Awake () {
-        _targetMover = GetComponent<ObjectTargetMovement>();
+        _targetMover = GetComponent<ConstantVelocity>();
 	}
 	
 	void Update () {
-        _targetMover.MoveTowardsTarget();
+        
 	}   
 }

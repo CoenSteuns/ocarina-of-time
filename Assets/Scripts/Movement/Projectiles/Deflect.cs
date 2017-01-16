@@ -11,15 +11,13 @@ public class Deflect : MonoBehaviour {
     /// </summary>
 	public void DeflectProjectiles()
     {
-        Collider[] allColliders = Physics.OverlapSphere(this.transform.position, _range);
-        GameObject target = GetComponent<TargetHolder>().target;
-        for(int i = 0; i < allColliders.Length; i++)
+        var allColliders = Physics.OverlapSphere(this.transform.position, _range);
+        var target = GetComponent<TargetHolder>().target;
+        foreach (var t in allColliders)
         {
-            if (allColliders[i].CompareTag("Projectile"))
-            {
-                Collider projectile = allColliders[i];
-                projectile.gameObject.GetComponent<DeflectionManeger>().bounce(target);
-            }
+            if (!t.CompareTag("Projectile")) continue;
+            var projectile = t;
+            projectile.gameObject.GetComponent<DeflectionManeger>().Bounce(target);
         }
     }
 }
