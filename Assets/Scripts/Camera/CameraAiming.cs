@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraAiming : MonoBehaviour {
-
+	/*
 	//https://www.reddit.com/r/gamedev/comments/2scqxa/ocarina_of_times_ztargeting_mechanic/?st=ixua9kld&sh=710dc2a5
 	//http://imgur.com/a/ivuhk
 	//Check Distance From TARGET & PLAYER
@@ -33,4 +33,5 @@ public class CameraAiming : MonoBehaviour {
 
 		float angle = Mathf.Atan2 (centerpoint, player);
 	}
+	*/
 }
