@@ -15,14 +15,6 @@ public class ObjectBouncer : MonoBehaviour {
 
     public void Bounce()
     {
-        if(_mover.target == targetOne)
-        {
-            _mover.target = targetTwo;
-        }
-        else
-        {
-            _mover.target = targetOne;
-        }
-        
+        _mover.target = _mover.target == targetOne ? targetTwo : targetOne;
     }
 }

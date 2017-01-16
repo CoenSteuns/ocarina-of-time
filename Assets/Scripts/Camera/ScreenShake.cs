@@ -10,6 +10,7 @@ public class ScreenShake : MonoBehaviour {
     [SerializeField] private bool _isShaking = true;                 //if the camera shake is on.
 
     private float _shakeLeft;                                       //how long it wil keep shaking.
+    private bool _shakeBreak = true;
 
     /// <summary>
     /// The start duration of a shake.
@@ -59,7 +60,7 @@ public class ScreenShake : MonoBehaviour {
     /// </summary>
     public void StopShake()
     {
-        _isShaking = false;
+        _shakeBreak = false;
     }
 
     void Start()
@@ -74,24 +75,27 @@ public class ScreenShake : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator Shake()
     {
-        _shakeLeft = _shakeDuration;
+        _shakeLeft = _shakeDuration;//reset the shake
         Vector3 startPosition = _camera.transform.localPosition;//the startposition
-        Vector3 positionDiffrence = Vector3.zero;
+        Vector3 positionDiffrence = Vector3.zero;//new vector with position (0,0,0)
         do
         {
-            _isShaking = false;
-            if (_shakeLeft > 0)
+            _isShaking = false;//turns the shaking off
+            if (_shakeLeft > 0)//if the time left is more then 0
             {
+
+                //the shaking
                 startPosition = _camera.transform.localPosition - positionDiffrence;
                 _camera.transform.localPosition = Random.insideUnitSphere * _shakeIntensity + startPosition;
                 positionDiffrence = _camera.transform.localPosition - startPosition;
 
-                _shakeLeft -= Time.deltaTime;
-                _isShaking = true;
+                _shakeLeft -= Time.deltaTime;//subtracts the time
+                _isShaking = true;//turns shaking on
             }
-            yield return new WaitForSeconds(_shakeDuration);
-        } while (isShaking);
-        _camera.transform.localPosition = startPosition;
+            yield return new WaitForSeconds(_shakeDuration);//what if duration
+        } while (isShaking && _shakeBreak);//repeat if is shaking
+        _camera.transform.localPosition = startPosition;//if the shaking is over return to the center position
+        _shakeBreak = true;
 
     }
 }

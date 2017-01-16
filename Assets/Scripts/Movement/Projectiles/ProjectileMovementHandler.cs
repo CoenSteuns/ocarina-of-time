@@ -10,6 +10,6 @@ public class ProjectileMovementHandler : MonoBehaviour {
 	}
 	
 	void Update () {
-        _targetMover.moveTowardsTarget();
+        _targetMover.MoveTowardsTarget();
 	}   
 }

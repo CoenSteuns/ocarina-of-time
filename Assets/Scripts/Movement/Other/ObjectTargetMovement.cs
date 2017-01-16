@@ -59,50 +59,41 @@ public class ObjectTargetMovement : MonoBehaviour {
     /// <summary>
     /// Makes the object move towards the target.
     /// </summary>
-    public void moveTowardsTarget()
+    public void MoveTowardsTarget()
     {
         NewHomingPosition();//sets new position if it is homing
-        Vector3 direction = (_targetedPosition - this.transform.position);//the direction
-        if ((_targetedPosition - transform.position).magnitude > 0.1f)
+        var direction = (_targetedPosition - this.transform.position);//the direction
+        if (!((_targetedPosition - transform.position).magnitude > 0.1f)) return;
+        if (!(direction.magnitude > _minDistance)) return;
+        if (_groundOnly)//if it can not move in the air
         {
-            if (direction.magnitude > _minDistance)//check min distance
-            {
-                if (_groundOnly)//if it can not move in the air
-                {
-                    direction.y = 0;//makes y 0.
-                }
-                direction.Normalize();
-                _movement.SetNewDirection(direction);//sets the direction
-            }
+            direction.y = 0;//makes y 0.
         }
+        direction.Normalize();
+        _movement.SetNewDirection(direction);//sets the direction
     }
 
     /// <summary>
     /// Makes the object move away from the target.
     /// </summary>
-    public void moveAwayFromTarget()
+    public void MoveAwayFromTarget()
     {
         NewHomingPosition();//sets new position if it is homing
-        Vector3 direction = -(_targetedPosition - this.transform.position);//the direction
+        var direction = -(_targetedPosition - this.transform.position);//the direction
 
-        if ((_targetedPosition - transform.position).magnitude > 0.1f)
+        if (!((_targetedPosition - transform.position).magnitude > 0.1f)) return;
+        if (!(direction.magnitude < _maxDistance) && _maxDistance != 0) return;
+        if (_groundOnly)//if it can not move in the air
         {
-
-            if (direction.magnitude < _maxDistance || _maxDistance == 0)//check max distance
-            {
-                if (_groundOnly)//if it can not move in the air
-                {
-                    direction.y = 0;//makes y 0.
-                }
-                direction.Normalize();
-                _movement.SetNewDirection(direction);//sets the direction
-            }
-
+            direction.y = 0;//makes y 0.
         }
+        direction.Normalize();
+        _movement.SetNewDirection(direction);//sets the direction
     }
 
     void Awake()
     {
+        print("test");
         _movement = GetComponent<MovementHandler>();
         SetNewTargetPosition();
     }
