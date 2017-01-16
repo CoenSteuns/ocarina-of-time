@@ -93,7 +93,6 @@ public class ObjectTargetMovement : MonoBehaviour {
 
     void Awake()
     {
-        print("test");
         _movement = GetComponent<MovementHandler>();
         SetNewTargetPosition();
     }

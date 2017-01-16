@@ -7,30 +7,46 @@ using UnityEngine;
 /// </summary>
 public class Health : MonoBehaviour {
 
-	[SerializeField] private float maxHealth;
+	[SerializeField] private float _maxHealth;
+    [SerializeField] private float _minHealth;
 	private float _currentHealth;
 
-	public void SubtractHealth(float subtract){
-		_currentHealth -= subtract;
-	}
+    public float currentHealth
+    {
+        get { return _currentHealth; }
+        set { _maxHealth = value; }
+    }
+    public float maxHealth
+    {
+        get { return _currentHealth; }
+    }
+    public float minHealth
+    {
+        get { return _currentHealth; }
+    }
 
-	// Use this for initialization
-	void Start () {
-		_currentHealth = maxHealth;
+    public void SubtractHealth(float subtract){
+		_currentHealth -= subtract;
+	    CheckHealth();
+
+	}
+    public void AddHealth(float add)
+    {
+        _currentHealth += add;
+        CheckHealth();
+    }
+
+    // Use this for initialization
+    void Start () {
+		_currentHealth = _maxHealth;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-//		print (this+" CurrentHealth: "+_currentHealth);
-
-		if(_currentHealth > maxHealth){
-			print ("CHEATER!");
-			_currentHealth = maxHealth;
+	/// <summary>
+    /// Checks if the health is more then the maximum amount of health.
+    /// </summary>
+	void CheckHealth () {
+		if(_currentHealth > _maxHealth){
+			_currentHealth = _maxHealth;
 		}
-
-		if(_currentHealth == 0){
-			print (this +" IS DEAD");
-		}	
 	}
 }

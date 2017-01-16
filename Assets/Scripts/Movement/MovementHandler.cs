@@ -96,7 +96,7 @@ public class MovementHandler : MonoBehaviour {
         {
             speed = _maxSpeed;
         }
-        if(speed < _minSpeed)
+        else if(speed < _minSpeed)
         {
             speed = _minSpeed;
         }

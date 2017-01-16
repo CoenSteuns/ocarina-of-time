@@ -76,8 +76,8 @@ public class ScreenShake : MonoBehaviour {
     private IEnumerator Shake()
     {
         _shakeLeft = _shakeDuration;//reset the shake
-        Vector3 startPosition = _camera.transform.localPosition;//the startposition
-        Vector3 positionDiffrence = Vector3.zero;//new vector with position (0,0,0)
+        var startPosition = _camera.transform.localPosition;//the startposition
+        var positionDiffrence = Vector3.zero;//new vector with position (0,0,0)
         do
         {
             _isShaking = false;//turns the shaking off
