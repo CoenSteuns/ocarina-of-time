@@ -8,17 +8,30 @@ using UnityEngine;
 /// </summary>
 public class CameraFollow : MonoBehaviour {
 
-	[SerializeField] private GameObject target;
-	[SerializeField] private float minDistance;
+	[SerializeField] private Transform target;
+	[SerializeField] private float distance;
+	[SerializeField] private float offsetY;
 	[SerializeField] private float speed;
 
+	private bool resetCam;
 	
 	// Update is called once per frame
 	void Update () {
-		float _distance = Vector3.Distance (target.transform.position, transform.position);
+		float _distance = Vector3.Distance (target.position, transform.position);
+		Vector3 _behind = target.position - new Vector3 (target.transform.forward.x * distance, target.transform.forward.z * distance); 
 
-		if(_distance < minDistance){
-			
+
+		if(_distance < distance){
+			//NEED TO BE DONE BIJ CAMERA AIM
+			transform.LookAt (target.transform);
+		} else if (_distance > distance * 2){
+			//NEED TO BE DONE BIJ CAMERA AIM
+			transform.LookAt (target.transform);
+			transform.position = Vector3.MoveTowards (transform.position, new Vector3(target.position.x, target.position.y + offsetY, target.position.z - distance), speed * 3 * Time.deltaTime);
+		} else if (_distance < distance * 2 && _distance > distance){
+			//NEED TO BE DONE BIJ CAMERA AIM
+			transform.LookAt (target.transform);
+			transform.position = Vector3.MoveTowards (transform.position, new Vector3(target.position.x, target.position.y + offsetY, target.position.z - distance), speed * Time.deltaTime);
 		}
 	}
 }
