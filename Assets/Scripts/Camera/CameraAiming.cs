@@ -18,12 +18,11 @@ public class CameraAiming : MonoBehaviour {
 
 	[SerializeField] private Transform target;
 	[SerializeField] private Transform player;
-
 	[SerializeField] private Vector3 cameraOffset;
 
 	private Vector3 lookAtPoint;
 
-	private bool isLocked;
+	[SerializeField] private bool isLocked;
 
 	// Use this for initialization
 	void Start () {
