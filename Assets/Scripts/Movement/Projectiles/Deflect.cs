@@ -11,7 +11,6 @@ public class Deflect : MonoBehaviour {
     /// </summary>
 	public void DeflectProjectiles()
     {
-        
         var allColliders = Physics.OverlapSphere(this.transform.position, _range);
         var target = GetComponent<TargetHolder>().target;
         foreach (var t in allColliders)
