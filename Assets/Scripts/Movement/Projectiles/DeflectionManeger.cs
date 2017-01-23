@@ -1,14 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
-public class DeflectionManeger : MonoBehaviour {
+[System.Serializable]
+public class onDeflect : UnityEvent<Vector3> { }
+
+public class DeflectionManeger : MonoBehaviour
+{
+
+    [SerializeField] private onDeflect _onDeflect;
 
     public ConstantVelocity _targetMover;
     
     public void Bounce(GameObject target)
     {
-        _targetMover.direction = target.transform.position - this.transform.position;
+        _onDeflect.Invoke(target.transform.position - this.transform.position);
+        //_targetMover.SetDirection(target.transform.position - this.transform.position);
+        //GetComponent<ForwardTurner>().SetNewTarget(target.transform.position - this.transform.position);
     }
 
 }

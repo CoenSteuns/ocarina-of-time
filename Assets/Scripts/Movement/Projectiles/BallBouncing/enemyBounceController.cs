@@ -5,11 +5,11 @@ public class enemyBounceController : MonoBehaviour {
 
     [SerializeField] private float _hitChance;
 
-    private Deflect _bouncer;
+    private DeflectionHandler _bouncer;
 
     void Awake()
     {
-        _bouncer = GetComponent<Deflect>();
+        _bouncer = GetComponent<DeflectionHandler>();
         StartCoroutine(hit());
     }
 	
@@ -24,7 +24,6 @@ public class enemyBounceController : MonoBehaviour {
             if (random > _hitChance)
             {
                 _bouncer.DeflectProjectiles();
-
             }
             yield return new WaitForSeconds(0.33f);
         }

@@ -10,17 +10,7 @@ public class ConstantVelocity : MonoBehaviour {
     [SerializeField] private Vector3 _direction;//The direction the the object wil keep moving in.
     [SerializeField] private bool _isMoving = false;//If the object is moving.
 
-    private MovementHandler _movement;//the movement handler.
-    
-    /// <summary>
-    /// The direction the object will move  in.
-    /// </summary>
-    public Vector3 direction
-    {
-        get { return _direction; }
-        set { _direction = value; }
-    }
-
+    private MovementHandler _movement;//the movement handler
     /// <summary>
     /// If the object is moving.
     /// </summary>
@@ -43,6 +33,24 @@ public class ConstantVelocity : MonoBehaviour {
     public void StopMoving()
     {
         _isMoving = false;
+    }
+
+
+    /// <summary>
+    /// Set the direction.
+    /// </summary>
+    /// <param name="position">the position it </param>
+    public void SetDirection(GameObject position)
+    {
+        SetDirection(transform.position - position.transform.position);
+    }
+    public void SetDirection(Transform position)
+    {
+        SetDirection(position.position);
+    }
+    public void SetDirection(Vector3 position)
+    {
+        _direction = position;
     }
 
     void Awake()
