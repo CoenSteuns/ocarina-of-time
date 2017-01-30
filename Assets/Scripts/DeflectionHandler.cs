@@ -21,11 +21,12 @@ public class DeflectionHandler : MonoBehaviour
 
     public void DeflectProjectiles()
     {
-        GameObject[] obs = _object.GetObjectsInArea(_range, _acceptedTags);
-        for (var i = 0; i < obs.Length; i++)
+        GameObject[] objects = _object.GetObjectsInArea(_range, _acceptedTags);
+
+        for (var i = 0; i < objects.Length; i++)
         {
-            obs[i].GetComponent<DeflectionManeger>().Bounce(_target.target);
-            ParticleSystem.MainModule newMain = obs[i].GetComponent<ParticleSystem>().main;
+            objects[i].GetComponent<DeflectionManeger>().Bounce(_target.target);
+            ParticleSystem.MainModule newMain = objects[i].GetComponent<ParticleSystem>().main;
             newMain.startColor = _color;
         }
     }

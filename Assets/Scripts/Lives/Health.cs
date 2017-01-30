@@ -7,8 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Health : MonoBehaviour {
 
-	[SerializeField] private float _maxHealth;
-    [SerializeField] private float _minHealth;
+	[SerializeField] private float _maxHealth = 10;
+    [SerializeField] private float _minHealth = 1;
 	private float _currentHealth;
 
     public float currentHealth
@@ -36,7 +36,6 @@ public class Health : MonoBehaviour {
         CheckHealth();
     }
 
-    // Use this for initialization
     void Start () {
 		_currentHealth = _maxHealth;
 	}

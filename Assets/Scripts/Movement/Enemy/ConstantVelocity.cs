@@ -11,6 +11,12 @@ public class ConstantVelocity : MonoBehaviour {
     [SerializeField] private bool _isMoving = false;//If the object is moving.
 
     private MovementHandler _movement;//the movement handler
+
+    public Vector3 Direction
+    {
+        get { return _direction; }
+    }
+    
     /// <summary>
     /// If the object is moving.
     /// </summary>

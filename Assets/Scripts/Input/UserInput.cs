@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Checks all the user input set in the inspector and invokes the event of the same number.
+/// </summary>
 public class UserInput : MonoBehaviour {
 
     public KeyCode[] oneTimeKeys;
